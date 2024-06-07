@@ -26,51 +26,6 @@ const page = ref(1)
 const pageCount = 4
 const total = ref(products.length)
 
-/*
-//////////////////
-const sort = ref({ column: 'title', direction: 'asc' as const })
-const sortedRows = computed(() => {
-  const sortedProducts = [...products]
-  const { column, direction } = sort.value
-
-  if (column && direction) {
-    sortedProducts.sort((a, b) => {
-      const aValue = a[column]
-      const bValue = b[column]
-      if (aValue < bValue) return direction === 'asc' ? -1 : 1
-      if (aValue > bValue) return direction === 'asc' ? 1 : -1
-      return 0
-    })
-  }
-  return sortedProducts
-})
-
-// Compute filtered and paginated rows based on the search query, sorted data, and pagination settings
-const rows = computed(() => {
-  console.log(sortedRows)
-  let filteredProducts = [...sortedRows.value]
-
-  if (!q.value) {
-    total.value = products.length
-    return products.slice((page.value - 1) * pageCount, (page.value) * pageCount);
-  }
-  page.value = 1;
-  let result = products.filter((product: any) => {
-    return Object.values(product).some(value =>
-        String(value).toLowerCase().includes(q.value.toLowerCase())
-    );
-  })
-  total.value = result.length
-  filteredProducts = result.slice((page.value - 1) * pageCount, (page.value) * pageCount);
-
-  const startIndex = (page.value - 1) * pageCount
-  const endIndex = startIndex + pageCount
-
-  return filteredProducts.slice(startIndex, endIndex)
-})
-*/
-//////////////////
-
 const sort = ref({ column: 'title', direction: 'asc' as const })
 const sortedRows = computed(() => {
   const sortedProducts = [...products]
@@ -123,22 +78,6 @@ const filteredRows = computed(() => {
   return result.slice((page.value - 1) * pageCount, (page.value) * pageCount);
 });
 
-/*
-const filteredRows = computed(() => {
-  if (!q.value) {
-    total.value = products.length
-    return products.slice((page.value - 1) * pageCount, (page.value) * pageCount);
-  }
-  page.value = 1;
-  let result = products.filter((product: any) => {
-    return Object.values(product).some(value =>
-        String(value).toLowerCase().includes(q.value.toLowerCase())
-    );
-  })
-  total.value = result.length
-  return result.slice((page.value - 1) * pageCount, (page.value) * pageCount);
-})
-*/
 const selected = ref([])
 
 </script>
